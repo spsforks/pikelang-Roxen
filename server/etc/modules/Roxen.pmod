@@ -443,7 +443,7 @@ int is_mysql_keyword( string name )
       "longtext", "low_priority", "max", "max_rows", "match", "mediumblob",
       "mediumtext", "mediumint", "middleint", "min_rows", "minute",
       "minute_second", "modify", "month", "monthname", "myisam", "natural",
-      "numeric", "no", "not", "null", "on", "optimize", "option",
+      "numeric", "no", "not", "null", "offset", "on", "optimize", "option",
       "optionally", "or", "order", "outer", "outfile", "pack_keys",
       "partial", "password", "precision", "primary", "procedure", "process",
       "processlist", "privileges", "read", "real", "references", "reload",

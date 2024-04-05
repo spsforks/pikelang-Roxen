@@ -27,7 +27,7 @@ mapping|string parse( RequestID id )
             string dir = id->variables["directory-" + schedule];
             db->query("UPDATE db_schedules "
                       "   SET period = %d, "
-                      "       offset = %d, "
+                      "       `offset` = %d, "
                       "       generations = %d, "
                       "       method = %s, "
                       "       dir = %s "
@@ -63,7 +63,7 @@ mapping|string parse( RequestID id )
     "</th><th align='left'>" + _(1031, "Method") +
     "</th><th></th></tr>\n";
 
-  foreach(db->query("SELECT id, schedule, period, offset, dir, "
+  foreach(db->query("SELECT id, schedule, period, `offset`, dir, "
                     "       generations, method "
                     "  FROM db_schedules "
                     " ORDER BY id ASC"), mapping(string:string) schedule) {
