@@ -1,4 +1,4 @@
-// This is a roxen pike module. Copyright пїЅ 1999 - 2009, Roxen IS.
+// This is a roxen pike module. Copyright © 1999 - 2009, Roxen IS.
 //
 // $Id$
 
@@ -443,7 +443,7 @@ int is_mysql_keyword( string name )
       "longtext", "low_priority", "max", "max_rows", "match", "mediumblob",
       "mediumtext", "mediumint", "middleint", "min_rows", "minute",
       "minute_second", "modify", "month", "monthname", "myisam", "natural",
-      "numeric", "no", "not", "null", "offset", "on", "optimize", "option",
+      "numeric", "no", "not", "null", "on", "optimize", "option",
       "optionally", "or", "order", "outer", "outfile", "pack_keys",
       "partial", "password", "precision", "primary", "procedure", "process",
       "processlist", "privileges", "read", "real", "references", "reload",
@@ -2082,102 +2082,102 @@ Parser.HTML get_xml_parser()
 }
 
 constant iso88591
-=([ "&nbsp;":   "пїЅ",
-    "&iexcl;":  "пїЅ",
-    "&cent;":   "пїЅ",
-    "&pound;":  "пїЅ",
-    "&curren;": "пїЅ",
-    "&yen;":    "пїЅ",
-    "&brvbar;": "пїЅ",
-    "&sect;":   "пїЅ",
-    "&uml;":    "пїЅ",
-    "&copy;":   "пїЅ",
-    "&ordf;":   "пїЅ",
-    "&laquo;":  "пїЅ",
-    "&not;":    "пїЅ",
-    "&shy;":    "пїЅ",
-    "&reg;":    "пїЅ",
-    "&macr;":   "пїЅ",
-    "&deg;":    "пїЅ",
-    "&plusmn;": "пїЅ",
-    "&sup2;":   "пїЅ",
-    "&sup3;":   "пїЅ",
-    "&acute;":  "пїЅ",
-    "&micro;":  "пїЅ",
-    "&para;":   "пїЅ",
-    "&middot;": "пїЅ",
-    "&cedil;":  "пїЅ",
-    "&sup1;":   "пїЅ",
-    "&ordm;":   "пїЅ",
-    "&raquo;":  "пїЅ",
-    "&frac14;": "пїЅ",
-    "&frac12;": "пїЅ",
-    "&frac34;": "пїЅ",
-    "&iquest;": "пїЅ",
-    "&Agrave;": "пїЅ",
-    "&Aacute;": "пїЅ",
-    "&Acirc;":  "пїЅ",
-    "&Atilde;": "пїЅ",
-    "&Auml;":   "пїЅ",
-    "&Aring;":  "пїЅ",
-    "&AElig;":  "пїЅ",
-    "&Ccedil;": "пїЅ",
-    "&Egrave;": "пїЅ",
-    "&Eacute;": "пїЅ",
-    "&Ecirc;":  "пїЅ",
-    "&Euml;":   "пїЅ",
-    "&Igrave;": "пїЅ",
-    "&Iacute;": "пїЅ",
-    "&Icirc;":  "пїЅ",
-    "&Iuml;":   "пїЅ",
-    "&ETH;":    "пїЅ",
-    "&Ntilde;": "пїЅ",
-    "&Ograve;": "пїЅ",
-    "&Oacute;": "пїЅ",
-    "&Ocirc;":  "пїЅ",
-    "&Otilde;": "пїЅ",
-    "&Ouml;":   "пїЅ",
-    "&times;":  "пїЅ",
-    "&Oslash;": "пїЅ",
-    "&Ugrave;": "пїЅ",
-    "&Uacute;": "пїЅ",
-    "&Ucirc;":  "пїЅ",
-    "&Uuml;":   "пїЅ",
-    "&Yacute;": "пїЅ",
-    "&THORN;":  "пїЅ",
-    "&szlig;":  "пїЅ",
-    "&agrave;": "пїЅ",
-    "&aacute;": "пїЅ",
-    "&acirc;":  "пїЅ",
-    "&atilde;": "пїЅ",
-    "&auml;":   "пїЅ",
-    "&aring;":  "пїЅ",
-    "&aelig;":  "пїЅ",
-    "&ccedil;": "пїЅ",
-    "&egrave;": "пїЅ",
-    "&eacute;": "пїЅ",
-    "&ecirc;":  "пїЅ",
-    "&euml;":   "пїЅ",
-    "&igrave;": "пїЅ",
-    "&iacute;": "пїЅ",
-    "&icirc;":  "пїЅ",
-    "&iuml;":   "пїЅ",
-    "&eth;":    "пїЅ",
-    "&ntilde;": "пїЅ",
-    "&ograve;": "пїЅ",
-    "&oacute;": "пїЅ",
-    "&ocirc;":  "пїЅ",
-    "&otilde;": "пїЅ",
-    "&ouml;":   "пїЅ",
-    "&divide;": "пїЅ",
-    "&oslash;": "пїЅ",
-    "&ugrave;": "пїЅ",
-    "&uacute;": "пїЅ",
-    "&ucirc;":  "пїЅ",
-    "&uuml;":   "пїЅ",
-    "&yacute;": "пїЅ",
-    "&thorn;":  "пїЅ",
-    "&yuml;":   "пїЅ",
+=([ "&nbsp;":   " ",
+    "&iexcl;":  "Ў",
+    "&cent;":   "ў",
+    "&pound;":  "Ј",
+    "&curren;": "¤",
+    "&yen;":    "Ґ",
+    "&brvbar;": "¦",
+    "&sect;":   "§",
+    "&uml;":    "Ё",
+    "&copy;":   "©",
+    "&ordf;":   "Є",
+    "&laquo;":  "«",
+    "&not;":    "¬",
+    "&shy;":    "­",
+    "&reg;":    "®",
+    "&macr;":   "Ї",
+    "&deg;":    "°",
+    "&plusmn;": "±",
+    "&sup2;":   "І",
+    "&sup3;":   "і",
+    "&acute;":  "ґ",
+    "&micro;":  "µ",
+    "&para;":   "¶",
+    "&middot;": "·",
+    "&cedil;":  "ё",
+    "&sup1;":   "№",
+    "&ordm;":   "є",
+    "&raquo;":  "»",
+    "&frac14;": "ј",
+    "&frac12;": "Ѕ",
+    "&frac34;": "ѕ",
+    "&iquest;": "ї",
+    "&Agrave;": "А",
+    "&Aacute;": "Б",
+    "&Acirc;":  "В",
+    "&Atilde;": "Г",
+    "&Auml;":   "Д",
+    "&Aring;":  "Е",
+    "&AElig;":  "Ж",
+    "&Ccedil;": "З",
+    "&Egrave;": "И",
+    "&Eacute;": "Й",
+    "&Ecirc;":  "К",
+    "&Euml;":   "Л",
+    "&Igrave;": "М",
+    "&Iacute;": "Н",
+    "&Icirc;":  "О",
+    "&Iuml;":   "П",
+    "&ETH;":    "Р",
+    "&Ntilde;": "С",
+    "&Ograve;": "Т",
+    "&Oacute;": "У",
+    "&Ocirc;":  "Ф",
+    "&Otilde;": "Х",
+    "&Ouml;":   "Ц",
+    "&times;":  "Ч",
+    "&Oslash;": "Ш",
+    "&Ugrave;": "Щ",
+    "&Uacute;": "Ъ",
+    "&Ucirc;":  "Ы",
+    "&Uuml;":   "Ь",
+    "&Yacute;": "Э",
+    "&THORN;":  "Ю",
+    "&szlig;":  "Я",
+    "&agrave;": "а",
+    "&aacute;": "б",
+    "&acirc;":  "в",
+    "&atilde;": "г",
+    "&auml;":   "д",
+    "&aring;":  "е",
+    "&aelig;":  "ж",
+    "&ccedil;": "з",
+    "&egrave;": "и",
+    "&eacute;": "й",
+    "&ecirc;":  "к",
+    "&euml;":   "л",
+    "&igrave;": "м",
+    "&iacute;": "н",
+    "&icirc;":  "о",
+    "&iuml;":   "п",
+    "&eth;":    "р",
+    "&ntilde;": "с",
+    "&ograve;": "т",
+    "&oacute;": "у",
+    "&ocirc;":  "ф",
+    "&otilde;": "х",
+    "&ouml;":   "ц",
+    "&divide;": "ч",
+    "&oslash;": "ш",
+    "&ugrave;": "щ",
+    "&uacute;": "ъ",
+    "&ucirc;":  "ы",
+    "&uuml;":   "ь",
+    "&yacute;": "э",
+    "&thorn;":  "ю",
+    "&yuml;":   "я",
 ]);
 
 constant international
@@ -3874,7 +3874,7 @@ protected class CharsetDecoderWrapper
 protected multiset(string) charset_warned_for = (<>);
 
 constant magic_charset_variable_placeholder = "__MaGIC_RoxEn_Actual___charseT";
-constant magic_charset_variable_value = "пїЅпїЅпїЅ&#x829f;@" + magic_charset_variable_placeholder;
+constant magic_charset_variable_value = "едц&#x829f;@" + magic_charset_variable_placeholder;
 
 protected mapping(string:function(string:string)) client_charset_decoders = ([
   "http": http_decode_string,
@@ -3915,7 +3915,7 @@ function(string:string) get_decoder_for_client_charset (string charset)
     CharsetDecoderWrapper (charset)->decode;
 }
 
-string get_client_charset (string пїЅпїЅпїЅ)
+string get_client_charset (string едц)
 //! Returns charset used by the client, given the clients encoding of
 //! the string @[magic_charset_variable_value]. See the
 //! @expr{<roxen-automatic-charset-variable>@} RXML tag.
@@ -3941,9 +3941,9 @@ string get_client_charset (string пїЅпїЅпїЅ)
   //  If the first character is "%" the whole request is most likely double
   //  encoded. We'll undo the decoding by combining the charset decoder with
   //  http_decode_string().
-  if (has_prefix(пїЅпїЅпїЅ, "%") && !has_prefix(пїЅпїЅпїЅ, "%%")) {
-    report_notice("Warning: Double HTTP encoding detected: %s\n", пїЅпїЅпїЅ);
-    string cs = get_client_charset (http_decode_string(пїЅпїЅпїЅ));
+  if (has_prefix(едц, "%") && !has_prefix(едц, "%%")) {
+    report_notice("Warning: Double HTTP encoding detected: %s\n", едц);
+    string cs = get_client_charset (http_decode_string(едц));
     if (cs) {
       return cs + "|http";
     } else {
@@ -3954,7 +3954,7 @@ string get_client_charset (string пїЅпїЅпїЅ)
   // Netscape and Safari seem to send "?" for characters that can't be
   // represented by the current character set while IE encodes those
   // characters as entities, while Opera uses "\201" or "?x829f;"...
-  string test = пїЅпїЅпїЅ;
+  string test = едц;
   sscanf (test, "%s\0", test);
   string test2 = test;
   sscanf (test2, "%s@%s", test2, string charset);
@@ -3976,14 +3976,14 @@ string get_client_charset (string пїЅпїЅпїЅ)
     report_notice( "Warning: Non 8-bit safe client detected.\n");
     return 0;
 
-  case "пїЅпїЅпїЅ?":
+  case "едц?":
     if (test2 != test)
       return "html";
     // FALL_THROUGH
-  case "пїЅпїЅпїЅ":
+  case "едц":
     return "iso-8859-1";
 
-  case "\33-AпїЅпїЅпїЅ":
+  case "\33-Aедц":
   case "\33-A\345\344\366\33$Bgl":
     return "iso-2022-jp";
 
@@ -4010,8 +4010,8 @@ string get_client_charset (string пїЅпїЅпїЅ)
   case "\214\212\232":
     return "mac";
 
-  case "\0пїЅ\0пїЅ\0пїЅ":
-  case "\0пїЅ\0пїЅ\0пїЅ\202\237":
+  case "\0е\0д\0ц":
+  case "\0е\0д\0ц\202\237":
      return "utf-16";
 
   case "\344\214":
@@ -4031,11 +4031,11 @@ string get_client_charset (string пїЅпїЅпїЅ)
     charset_warned_for[test] = 1;
     report_warning( "Unable to find charset decoder for %O "
                     "(vector %O, charset %O).\n",
-                    пїЅпїЅпїЅ, test, charset);
+                    едц, test, charset);
   }
 }
 
-function(string:string) get_client_charset_decoder( string пїЅпїЅпїЅ,
+function(string:string) get_client_charset_decoder( string едц,
                                                     RequestID|void id )
 //! Returns a decoder for the client's charset, given the clients
 //! encoding of the string @[magic_charset_variable_value]. See the
@@ -4044,7 +4044,7 @@ function(string:string) get_client_charset_decoder( string пїЅпїЅпїЅ,
 //! @seealso
 //! @[get_client_charset]
 {
-  string charset = get_client_charset (пїЅпїЅпїЅ);
+  string charset = get_client_charset (едц);
 
   if (function(string|function:void) f = id && id->set_output_charset)
     switch (charset) {
