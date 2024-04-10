@@ -276,46 +276,6 @@ string parse_low(RequestID id)
     });
   }
 
-  //  Add search engine schedules since they are wrapped inside profiles
-#if constant(Search)
-  foreach (roxen->configurations, Configuration c) {
-    if (RoxenModule search_mod = c->get_provider("sb_plugin_search")) {
-      mapping(string:int) db_profiles = search_mod->list_db_profiles();
-      foreach (db_profiles; string name; int profile_id) {
-        if (object db_prof = search_mod->get_profile(profile_id)) {
-          foreach (db_prof->vars; string key; Variable.Variable vv) {
-            if (list_schedule_var(vv, db_prof->vars)) {
-              string var_name = beautify_group_name(vv->name());
-              string mod_name =
-                "<span class='modname'>" +
-                Roxen.html_encode_string("Search profile \u201c" +
-                                         db_prof->name + "\u201d") +
-                "</span>";
-              string conf_name = Roxen.html_encode_string(c->name);
-              int next_ts = get_next_run(vv, db_prof->vars);
-              string curl =
-                "/sites/site.html/" + replace(conf_name, " ", "%20") + "/";
-              rows += ({
-                ([ "var_name":  var_name,
-                   "mod_name":  mod_name,
-                   "conf_name": conf_name,
-                   "mod_desc":  trim_desc(vv->doc() || ""),
-                   "disabled":  next_ts < 0,
-                   "next_ts":   next_ts,
-                   "next_msg":  get_next_msg(next_ts),
-                   "next_rel":  get_next_rel(next_ts),
-                   "curl":      curl,
-                   "murl":      0,
-                   "sort_key":  get_sort_key(next_ts, conf_name, var_name)
-                ]) });
-            }
-          }
-        }
-      }
-    }
-  }
-#endif
-
   //  Sort and generate HTML
   string res = "";
   sort(rows->sort_key, rows);
@@ -360,4 +320,3 @@ string parse(RequestID id)
     "<table cellpadding='0' cellspacing='0' border='0'>" + res + "</table>"
     "</box>";
 }
-
