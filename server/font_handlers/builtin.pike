@@ -1,5 +1,5 @@
 // This file is part of Roxen WebServer.
-// Copyright © 2000 - 2009, Roxen IS.
+// Copyright ï¿½ 2000 - 2009, Roxen IS.
 
 #include <config.h>
 #if constant(Image.FreeType.Face)
@@ -69,10 +69,6 @@ Font open( string name, int size, int bold, int italic )
   switch( replace(lower_case(name)," ","_")-"_" )
   {
    case "roxenbuiltin":
-     Configuration conf = roxen->current_configuration->get();
-     License.Key license_key = conf && conf->getvar("license")->get_key();
-     if (license_key && license_key->type() == "personal")
-       return Image.Font();
 #if constant(__rbf) && constant(grbf)
 #ifdef THREADS
      object key = lock->lock();

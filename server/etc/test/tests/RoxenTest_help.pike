@@ -59,7 +59,6 @@ void run_tests( Configuration c )
   roxenloader.push_compile_error_handler(ec);
   array modules = roxen->all_modules();
 
-  object key = c->getvar("license")->get_key();
   sort(modules->sname, modules);
   foreach(modules, ModuleInfo m) {
     test_generic(check_true, test_module_info, m);

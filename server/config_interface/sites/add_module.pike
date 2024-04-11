@@ -200,8 +200,8 @@ string module_name_from_file( string file )
   return Roxen.html_encode_string(((file/"/")[-1]/".")[0]);
 }
 
-string pafeaw( string errors, string warnings, array(ModuleInfo) locked_modules)
-// Parse And Format Errors And Warnings (and locked modules).
+string pafeaw( string errors, string warnings)
+// Parse And Format Errors And Warnings.
 // Your ordinary prettyprinting function.
 {
   mapping by_module = ([]);
@@ -310,20 +310,7 @@ string pafeaw( string errors, string warnings, array(ModuleInfo) locked_modules)
     da_string += "</table>";
 // "<pre>"+Roxen.html_encode_string( sprintf( "%O", by_module ) )+"</pre>";
   
-  return da_string + format_locked_modules(locked_modules);
-}
-
-string format_locked_modules(array(ModuleInfo) locked_modules)
-{
-  if(!sizeof(locked_modules))
-    return "";
-  
-  return
-    "<font size='+1'>Locked modules</font><br />\n"
-    "These modules are locked and can not be enabled because they are "
-    "not part of the license key for this configuration.<br />\n"
-    "<blockquote><font color='darkred'>"+
-    (((array(string))locked_modules->get_name())*"<br />\n")+"</font></blockquote>";
+  return da_string;
 }
 
 array(string) get_module_list( function describe_module,
@@ -382,9 +369,6 @@ array(string) get_module_list( function describe_module,
     }
   }
 
-  License.Key license_key = conf->getvar("license")->get_key();
-  array(RoxenModule) locked_modules = ({});
-  
   foreach( sort(indices(classes)), string c )
   {
     mixed r;
@@ -406,12 +390,6 @@ array(string) get_module_list( function describe_module,
         if (search_modules && !search_modules[q])
           continue;
         object b = module_nomore(q->sname, q, conf, id);
-        if( !b && q->locked &&
-            (!license_key || !q->unlocked(license_key, conf)) )
-        {
-          locked_modules += ({ q });
-          continue;
-        }
         res += describe_module( q, b );
       }
     } else {
@@ -420,7 +398,7 @@ array(string) get_module_list( function describe_module,
     }
   }
   master()->set_inhibit_compile_errors( 0 );
-  return ({ res, pafeaw( ec->get(), ec->get_warnings(), locked_modules) });
+  return ({ res, pafeaw( ec->get(), ec->get_warnings()) });
 }
 
 string module_image( int type )
@@ -774,8 +752,6 @@ string page_really_compact( RequestID id )
   string res = "";
 
   mixed r;
-  License.Key license_key = conf->getvar("license")->get_key();
-  array(RoxenModule) locked_modules = ({});
   
   if( (r = class_visible_compact( LOCALE(200,"Add Modules"),
                                   LOCALE(273,"Select one or several modules to add."),
@@ -787,12 +763,6 @@ string page_really_compact( RequestID id )
           q->type == 0 )
         continue;
       object b = module_nomore(q->sname, q, conf, id);
-      if( !b && q->locked &&
-          (!license_key || !q->unlocked(license_key, conf)) )
-      {
-        locked_modules += ({ q });
-        continue;
-      }
       res += describe_module_compact( q, b );
     }
   } else {
@@ -807,8 +777,7 @@ string page_really_compact( RequestID id )
                    "<input type=\"hidden\" name=\"config\" value=\"&form.config;\" />"+
                    res+"</select><br /><submit-gbutton> "
                    +LOCALE(200, "Add Modules")+" </submit-gbutton><br />"
-                   +pafeaw(ec->get(),ec->get_warnings(),
-                           locked_modules)+"</form>",
+                   +pafeaw(ec->get(),ec->get_warnings())+"</form>",
                    );
 }
 

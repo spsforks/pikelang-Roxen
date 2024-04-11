@@ -144,8 +144,6 @@ class ModuleInfo
 
   int last_checked;
   int type, multiple_copies;
-  array(string) locked;
-  mapping(Configuration:int) config_locked;
 
   string get_name();
   string get_description();
@@ -4899,4 +4897,3 @@ class UserDB
     return 0;
   }
 }
-

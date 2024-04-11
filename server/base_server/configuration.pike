@@ -4500,18 +4500,13 @@ RoxenModule enable_module( string modname, RoxenModule|void me,
 
 #ifdef MODULE_DEBUG
   if (enable_module_batch_msgs) {
-    if(moduleinfo->config_locked[this_object()])
-      report_debug("\bLocked %6.1fms\n", (gethrtime()-start_time)/1000.0);
-    else if (me->not_a_module)
+    if (me->not_a_module)
       report_debug("\bN/A %6.1fms\n", (gethrtime()-start_time)/1000.0);
     else
       report_debug("\bOK %6.1fms\n", (gethrtime()-start_time)/1000.0);
   }
 #else
-  if(moduleinfo->config_locked[this_object()])
-    report_error("   Error: \"%s\" not loaded (license restriction).\n",
-                 moduleinfo->get_name());
-  else if (me->not_a_module)
+  if (me->not_a_module)
     report_debug("   Note: \"%s\" not available.\n", moduleinfo->get_name());
 #endif
   if( !enabled_modules[modname+"#"+id] )
@@ -5744,13 +5739,6 @@ also set 'URLs'."));
                  "The file is searched for in parent directories in the same "
                  "manner as the no such file message override files.") );
 
-  defvar("license",
-         License.
-         LicenseVariable(getenv("ROXEN_LICENSEDIR") || "../license/", 
-                         VAR_NO_DEFAULT, DLOCALE(39, "License file"),
-                         DLOCALE(336, "The license file for this configuration."),
-                         this_object()));
-
 #ifdef HTTP_COMPRESSION
   defvar("http_compression_enabled", 1,
          DLOCALE(1000, "Compression: Enable HTTP compression"),
@@ -6171,4 +6159,3 @@ private int(0..1) snmp_global_disabled() {
   return (!objectp(roxen->snmpagent));
 }
 #endif
-
