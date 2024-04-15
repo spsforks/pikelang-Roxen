@@ -1,0 +1,10 @@
+subject: Roxen 7.2: DB: "offset" is a mysql keyword
+from: afe608d38ef4eaeb73d10ef25c67b11c7f4f00c8
+to: d3e26e3bff0201a089c3cf389efa5f559b0d3e3e
+originator: Marcus Wellhardh
+depends: 2024-04-15T094410
+restart: true
+
+• "offset" is a mysql keyword
+
+(cherry picked from commit 1ca8399afaf455261bae334dfcaf6acd64c5e2a5)
