@@ -1,0 +1,4 @@
+Modified files:
+  config_interface/dbs/schedules.pike
+  etc/include/version.h
+  etc/modules/Roxen.pmod
