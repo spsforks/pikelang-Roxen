@@ -7893,32 +7893,6 @@ class TagIfExpr {
   }
 }
 
-
-class TagIfTestLicense {
-  inherit RXML.Tag;
-  constant name = "if";
-  constant plugin_name = "test-license";
-  int eval(string u, RequestID id, mapping args)
-  {
-    License.Key key = id->conf->getvar("license")->get_key();
-    if(!key)
-      return 0;
-
-    //  Expects a string on the form:
-    //  * module::mode#feature
-    //  * module#feature
-    //  * module::mode
-    //  * module
-    if(sscanf(u, "%s::%s#%s", string module, string mode, string feature) == 3)
-      return !!key->get_module_feature(module, feature, mode);
-    if(sscanf(u, "%s#%s", string module, string feature) == 2)
-      return !!key->get_module_feature(module, feature);
-    if(sscanf(u, "%s::%s", string module, string mode) == 2)
-      return key->is_module_unlocked(module, mode);
-    return key->is_module_unlocked(u);
-  }
-}
-
 class TagIfTypeFromData {
     inherit IfIs;
     constant plugin_name = "type-from-data";
@@ -8228,26 +8202,6 @@ class TagEmitFonts
   }
 }
 
-
-class TagEmitLicenseWarnings {
-  inherit RXML.Tag;
-  constant name = "emit";
-  constant plugin_name = "license-warnings";
-  array get_dataset(mapping args, RequestID id)
-  {
-    // This emit plugin can be used to list warnings in the loaded
-    // license for a configuration. It can also be used within
-    // <license> or emit#licenses.
-    License.Key key = (( RXML.get_context()->current_scope() &&
-                         RXML.get_context()->get_var("key") )||
-                       id->conf->getvar("license")->get_key());
-    if(!key) {
-      RXML.parse_error("No license key defined in the configuration\n");
-      return ({});
-    }
-    return key->get_warnings();
-  }
-}
 
 inherit "emit_object";
 

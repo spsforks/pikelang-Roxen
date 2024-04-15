@@ -114,7 +114,6 @@ string selected_item( string q, Configuration c, RequestID id,
             ([
               "sname":q+"!"+i,
               "name":name,
-              "locked":mi->config_locked[c]
             ]),
           });
       }
@@ -203,7 +202,6 @@ string selected_item( string q, Configuration c, RequestID id,
              data->sname + "/") + "'\">"
             "<td>" +
             replace(Roxen.html_encode_string(data->name), " ", "&nbsp;") +
-            (data->locked ? " <imgs src='&usr.padlock;'/>" : "") +
             "</td>\n</tr>\n";
         }
         pre +=
@@ -302,7 +300,6 @@ string selected_item( string q, Configuration c, RequestID id,
                data->sname + "/") + "'>" +
               Roxen.html_encode_string(data->name) +
               "</a>" +
-              (data->locked ? " <imgs src='&usr.padlock;'/>" : "") +
               "</li>\n";
           else
             pre +=
@@ -323,7 +320,6 @@ string selected_item( string q, Configuration c, RequestID id,
               "/'") + ">" +
               Roxen.html_encode_string(data->name) +
               "</a>" +
-              (data->locked ? " <imgs src='&usr.padlock;'/>" : "") +
               "</td></tr>\n";
         }
         else
@@ -332,7 +328,6 @@ string selected_item( string q, Configuration c, RequestID id,
             pre +=
               "<li class='selected-indicator'>"
               "" + Roxen.html_encode_string(data->name) + "" +
-              (data->locked ? " <imgs src='&usr.padlock;'/>" : "") +
               "</li>\n";
           else
             pre +=
@@ -343,7 +338,6 @@ string selected_item( string q, Configuration c, RequestID id,
               "</td>"
               "<td width='100%' class='selected-indicator'>"
               "" + Roxen.html_encode_string(data->name) + "" +
-              (data->locked ? " <imgs src='&usr.padlock;'/>" : "") +
               "</td></tr>\n";
         }
       }

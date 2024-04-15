@@ -53,15 +53,6 @@ string|mapping parse( RequestID id )
       id->variables->site_template = t;
     }
   }
-
-  License.LicenseVariable license =
-    License.LicenseVariable(getenv("ROXEN_LICENSEDIR") || "../license/", 0,
-                            "License file",
-                            "Use this license file for the new configuration.",
-                            0, 1);
-  license->set_path("license");
-  if(id->variables[license->path()])
-    license->set_from_form(id);
   
   if( id->variables->site_template &&
       search(id->variables->site_template, "site_templates")!=-1 )
@@ -73,11 +64,6 @@ string|mapping parse( RequestID id )
     DBManager.set_permission( "local", c,  DBManager.WRITE );
     c->error_log[0] = 1;
     id->misc->new_configuration = c;
-    
-    // Set license in the new configuration if it is unset.
-    if(!c->getvar("license")->query()) {
-      c->getvar("license")->set(license->query());
-    }
     
     master()->clear_compilation_failures();
 
@@ -148,23 +134,14 @@ string|mapping parse( RequestID id )
           group = q->group;
         
         string button;
-        if(q->locked && !(license->get_key() && q->unlocked(license->get_key())))
-          button =
-            "<gbutton width='400' "
-            "         icon_src='&usr.padlock;' "
-            "         align_icon='right'"
-            "         state='disabled'>"
-            + Roxen.html_encode_string(name) +
-            "</gbutton>\n";
-        else
-          button =
-            "<cset variable='var.url'>"
-            "<gbutton-url width='400' "
-            "             icon_src='&usr.next;' "
-            "             align_icon='right'>"
-            + Roxen.html_encode_string(name) +
-            "</gbutton-url></cset>"
-            "<input border='0' type='image' src='&var.url;' name='"+st+"' />\n";
+        button =
+          "<cset variable='var.url'>"
+          "<gbutton-url width='400' "
+          "             icon_src='&usr.next;' "
+          "             align_icon='right'>"
+          + Roxen.html_encode_string(name) +
+          "</gbutton-url></cset>"
+          "<input border='0' type='image' src='&var.url;' name='"+st+"' />\n";
         
         //  Build a sort identifier on the form "999|Group name|template name"
         //  where 999 is a number which orders the groups. The group name is
@@ -237,13 +214,6 @@ string|mapping parse( RequestID id )
       "<td colspan='3'>"+var->doc()+"</td>\n"
       "</tr>\n";
   };
-  string license_res = "";
-  if(license->check_visibility(id, 0, 0, 0, 0))
-    license_res =
-      "<table border='0'>" +
-      render_variable(license, id) +
-      "</table>"
-      "<hr>\n";
   
-  return sprintf(base, license_res, res);
+  return sprintf(base, res, "");
 }

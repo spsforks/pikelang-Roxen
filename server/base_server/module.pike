@@ -165,7 +165,7 @@ array register_module()
     this_object()->module_doc,
     0,
     module_unique,
-    this_object()->module_locked,
+    0,
     this_object()->module_counter,
   });
 }
@@ -2211,4 +2211,3 @@ int|string format_db_browser_value (string db_name, string table_name,
                                     string column_name, array(string) col_names,
                                     array(string) col_types, array(string) row,
                                     RequestID id);
-

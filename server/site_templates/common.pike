@@ -18,14 +18,6 @@
 //! In this array the normal "#" separator is used in module copy
 //! specs, e.g. "filesystem#1".
 
-int unlocked(License.Key license)
-{
-  foreach(this->modules || ({}), string module)
-    if(!license->is_module_unlocked((module / "!")[0]))
-       return 0;
-  return 1;
-}
-
 object load_modules(Configuration conf)
 {
 #ifdef THREADS
@@ -199,7 +191,6 @@ mixed parse( RequestID id, mapping|void opt )
       }
     }
     
-    License.Key key = conf->getvar("license")->get_key();
     foreach( this->silent_modules || ({}), string mod )
     {
       // If the module list doesn't explicitly state that more than
@@ -208,11 +199,6 @@ mixed parse( RequestID id, mapping|void opt )
       if (conf->enabled_modules[mod])
         continue;
 
-      ModuleInfo module = roxen.find_module(mod);
-      if(module->locked && (!key || !module->unlocked(key)) ) {
-        report_debug("Ignoring module "+mod+", disabled in license.\n");
-        continue;
-      }
       conf->enable_module( mod );
     }
 

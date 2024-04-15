@@ -206,8 +206,6 @@ class FakeModuleInfo( string sname )
   constant filename = "NOFILE";
   constant type = 0;
   constant multiple_copies = 0;
-  constant locked = 0;
-  constant config_locked = ([]);
   string name, description;
   
   void save()  { }
@@ -215,7 +213,6 @@ class FakeModuleInfo( string sname )
   int init_module( string what )  { }
   int find_module( string sn )  { }
   int check (void|int force) { }
-  int unlocked(object /*License.Key*/ key, Configuration|void conf) { }
 
   protected string _sprintf()
   {
@@ -284,9 +281,7 @@ class ModuleInfo( string sname, string filename )
 {
   int last_checked;
   int type, multiple_copies;
-  array(string) locked;
   string counter;
-  mapping(Configuration:int) config_locked = ([]);
 
   mapping|string name;
   mapping|string description;
@@ -339,17 +334,6 @@ class ModuleInfo( string sname, string filename )
     {
       string locked_desc = "";
 
-      if (sizeof(config_locked)) {
-        locked_desc = "<p>" +
-          LOCALE(511," The module is locked and not part of the license. "
-                 "To enable this module please select a valid license "
-                 "and restart the server.") +
-          "</p>\n";
-        locked_desc +=
-          sprintf("<p>" +
-                  LOCALE(1092, "Required license feature: <tt>%s</tt>.") +
-                  "</p>\n", Roxen.html_encode_string(locked*":"));
-      }
       if (filename) {
         return ({
           0, // type
@@ -434,19 +418,7 @@ class ModuleInfo( string sname, string filename )
                    return java_wrapper(conf, filename);
                  };
         } else {
-          // Check if the module is locked.
-          object key = conf && conf->getvar("license")->get_key();
-          if(locked && !(key && unlocked(key, conf))) {
-            config_locked[conf] = 1;
-#ifdef RUN_SELF_TEST
-            werror ("Locked module: %O lock: %O\n",
-                    (string) (name || sname), locked * ":");
-#endif
-          }
-          else {
-            m_delete(config_locked, conf);
-            prog = load( filename, silent );
-          }
+          prog = load( filename, silent );
         }
       }
 
@@ -526,7 +498,6 @@ class ModuleInfo( string sname, string filename )
                "multiple_copies":multiple_copies,
                "name":encode_string(name),
                "description":encode_string(description),
-               "locked":locked && locked * ":",
                "counter":counter,
              ]) );
   }
@@ -553,9 +524,6 @@ class ModuleInfo( string sname, string filename )
       multiple_copies = !data[4];
     else
       multiple_copies = 1;
-    if( sizeof( data ) > 5) {
-      if (data[5]) locked = (stringp(data[5])?data[5]:sname)/":";
-    }
     if( sizeof( data ) > 6 )
       counter = data[6];
     else
@@ -682,7 +650,6 @@ class ModuleInfo( string sname, string filename )
             multiple_copies = data->multiple_copies;
             name = decode_string( data->name );
             description = decode_string( data->description );
-            locked = data->locked && data->locked/":";
             counter = data->counter || sname;
             return 1;
           }
@@ -696,36 +663,6 @@ class ModuleInfo( string sname, string filename )
       return init_module( roxen_path( filename ) );
     else
       return find_module( sname );
-  }
-
-  int unlocked(object /*License.Key*/ key, Configuration|void conf)
-  {
-    // NOTE: The locked string is module:feature:mode.
-    switch(sizeof(locked)) {
-    case 0:
-      break;
-    case 1:
-      if (!key->is_module_unlocked(locked[0]))
-        return 0;
-      break;
-    default:
-    case 3:
-      if (!sizeof(locked[1])) {
-        if (!key->is_module_unlocked(locked[0], locked[2]))
-          return 0;
-        break;
-      }
-      // FALL_THROUGH
-    case 2:
-      int val;	// Note: Use of zero_type() to promote old licenses.
-      if (!(val = key->get_module_feature(@locked)) && !zero_type(val))
-        return 0;
-      break;
-    }
-    if (!conf) return 1;
-    int|string cnt = key->get_module_feature(counter, "instances");
-    if (!cnt || cnt == "*") return 1;
-    return conf->counters[counter] < cnt;
   }
 }
 

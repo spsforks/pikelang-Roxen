@@ -4928,15 +4928,6 @@ class ScopeRoxen {
      case "unique-id":
        return ENCODE_RXML_TEXT(roxenp()->create_unique_id(), type);
 
-     case "license-type": {
-       object key = c->id->conf->getvar("license")->get_key();
-       return ENCODE_RXML_TEXT(key?key->type():"none", type);
-     }
-     case "license-warnings": {
-       object key = c->id->conf->getvar("license")->get_key();
-       return ENCODE_RXML_TEXT(key?sizeof(key->get_warnings()):0, type);
-     }
-
     case "auto-charset-variable":
       return ENCODE_RXML_TEXT("magic_roxen_automatic_charset_variable", type);
     case "auto-charset-value":
