@@ -1,0 +1,14 @@
+subject: Roxen 7.2: [REPD-1024] SQLKey: Detect table locking errors
+from: a5bda2ba1f159876747b2f69e2af470637954c78
+to: afe608d38ef4eaeb73d10ef25c67b11c7f4f00c8
+originator: Marcus Wellhardh
+depends: 2024-03-07T162451
+restart: true
+
+• Fix typo.
+
+Fixes [REPD-1024] some more.
+
+• SQLKey: Detect table locking errors.
+
+Improved diagnostics for [REPD-1024].
