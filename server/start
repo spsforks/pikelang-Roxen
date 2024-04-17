@@ -239,7 +239,7 @@ setup_for_tests() {
       eval "\"$pike\" $PIKEARGS $DEFINES \"$SELF_TEST_DIR/scripts/setup.pike\" \"$SELF_TEST_DIR\" \"$VARDIR\""
     fi
     once=${once:-1}
-    debug=1
+    debug=0
     #remove_dumped=1
 }
 
