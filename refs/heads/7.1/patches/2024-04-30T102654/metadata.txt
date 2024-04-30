@@ -1,0 +1,8 @@
+subject: Roxen 7.1: MySQL: "offset" is a mysql keyword
+from: 50bcb61825688da6fd02f019b5ef5de170042a4f
+to: 5395bce7a84983cc64e77e75991467c8d59e1548
+originator: Marcus Wellhardh
+depends: 2023-12-04T085511
+restart: true
+
+• "offset" is a mysql keyword
