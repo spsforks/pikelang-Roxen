@@ -1,9 +1,10 @@
 #!/usr/bin/env pike
+#charset utf-8
 // -*- Pike -*-
 //
 // Tool to create Roxen patches from git repositories.
 //
-// 2013-04-25 Henrik Grubbström
+// 2013-04-25 Henrik GrubbstrÃ¶m
 
 // #define DISABLE_PUSH
 
