@@ -657,7 +657,12 @@ mapping(string:mixed) recurse_find_properties(string path, string mode,
       }
       SIMPLE_TRACE_LEAVE ("Got status %d: %O",
                           properties->error, properties->rettext);
-      result->add_status(path, properties->error, properties->rettext);
+      if (!properties->rettext && !undefinedp(properties->rettext)) {
+        report_warning("Invalid status (query_property_set(%O)): %O\n",
+                       path, properties);
+      }
+      result->add_status(path, properties->error,
+                         properties->rettext || UNDEFINED);
       return properties;
     }
 
@@ -667,7 +672,12 @@ mapping(string:mixed) recurse_find_properties(string path, string mode,
 
       if (ret) {
         SIMPLE_TRACE_LEAVE ("Got status %d: %O", ret->error, ret->rettext);
-        result->add_status(path, ret->error, ret->rettext);
+        if (!ret->rettext && !undefinedp(ret->rettext)) {
+          report_warning("Invalid status (find_properties, path: %O): %O\n",
+                         path, ret);
+        }
+        result->add_status(path, ret->error,
+                           ret->rettext || UNDEFINED);
         return ret;
       }
     }
