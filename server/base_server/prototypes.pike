@@ -3917,6 +3917,14 @@ class MultiStatus
     MultiStatus.Prefixed prefix(string href_prefix) {
       return this_program (this_program::href_prefix + href_prefix);
     }
+
+    protected string _sprintf(int c)
+    {
+      if (c == 'O') {
+        return sprintf("%O(%O)", object_program(this), href_prefix);
+      }
+      return UNDEFINED;
+    }
   }
 
   MultiStatus.Prefixed prefix (string href_prefix)
