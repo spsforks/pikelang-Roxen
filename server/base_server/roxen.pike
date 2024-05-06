@@ -7457,14 +7457,11 @@ int main(int argc, array tmp)
     }
   }
 
-#ifdef THREADS
-  start_low_handler_threads();
-#endif /* THREADS */
-
   // Update the certificate registry before opening any ports.
   // NB: Force all certificate files to be reread and reparsed.
   scan_certs(1);
 
+  // Open ports for all configurations.
   enable_configurations();
 
   string pid_file = Getopt.find_option(argv, "p", "pid-file");
@@ -7473,6 +7470,13 @@ int main(int argc, array tmp)
   set_u_and_gid(); // Running with the right [e]uid:[e]gid from this point on.
 
   create_pid_file(pid_file);
+
+#ifdef THREADS
+  // NB: Start the threads *after* set_u_and_gid() has been called
+  //     in the main thread. Cf [WS-667].
+  // NB: Start the threads *before* loading of modules. Cf [EP-1265].
+  start_low_handler_threads();
+#endif /* THREADS */
 
   // Done before the modules are dumped.
 
