@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $Id: start,v 1.248 2012/09/27 10:04:49 grubba Exp $
+# $Id$
 
 ### If --silent-start is given as the first argument,
 ### nothing will be printed to stdout by the script.
@@ -1188,8 +1188,11 @@ if [ -z "$once" ] ; then
       #       We can't use $(exec sh -c 'echo $PPID') (the POSIX way), for
       #       multiple reasons, most of them pertaining to /bin/sh on
       #       Solaris which supports neither $PPID nor $().
+      #       We can't use $BASHPID since that requires bash 4.0 or later.
+      #       The exec is needed to avoid getting the pid for the intermediary
+      #       sub-shell for the backtick expression.
       old_start_pid="$start_pid"
-      start_pid="`\"$pike\" $PIKEARGS -e 'return (string)getppid();'`"
+      start_pid="`exec \"$pike\" $PIKEARGS -e 'return (string)getppid();'`"
       lock_pid_file "$start_pid" "start" "$canonicalconf"
       [ -z "$pidfile" ] || { echo "x" && echo $start_pid; } > "$pidfile"
       if [ "x$old_start_pid" = "x$start_pid" ]; then :; else
