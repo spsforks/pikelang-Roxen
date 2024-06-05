@@ -933,6 +933,7 @@ mixed nm_resolv(string x )
 void load_roxen()
 {
 //   new_master->resolv("Roxen");
+  add_constant("_locate_references", lambda(mixed...x) {});
 #if !constant( callablep )
   add_constant( "callablep",
 		lambda(mixed f){return functionp(f)||programp(f);});
@@ -1895,6 +1896,28 @@ protected class SQLKey
     handle_db_error (err);
   }
 
+  array(mapping) typed_query( string f, mixed ... args )
+  {
+    mixed err = catch {
+        array(mapping) ret = real->typed_query( f, @args );
+#ifdef SQL_DB_TRACE
+        if (trace_enabled) {
+          report_debug("SQL_TRACE: Sql(%O)->query(%O%{, %O%}) ==>\n"
+                       "SQL_TRACE:   %O\n",
+                       db_name, f, args, ret);
+        }
+#endif
+        return ret;
+      };
+#ifdef SQL_DB_TRACE
+    if (trace_enabled) {
+      report_debug("SQL_TRACE: Sql(%O)->query(%O%{, %O%}) failed:\n",
+                   db_name, f, args);
+    }
+#endif
+    handle_db_error (err);
+  }
+
   Sql.sql_result big_query( string f, mixed ... args )
   {
     Sql.sql_result o;
@@ -1907,7 +1930,39 @@ protected class SQLKey
     }
     return [object(Sql.sql_result)] (object) SQLResKey (o, this);
   }
-  
+
+  Sql.sql_result big_typed_query( string f, mixed ... args )
+  {
+    Sql.sql_result o;
+    if (mixed err = catch {
+        o = real->big_typed_query( f, @args );
+#ifdef SQL_DB_TRACE
+        if (trace_enabled) {
+          report_debug("SQL_TRACE: Sql(%O)->big_query(%O%{, %O%}) ==>\n",
+                       db_name, f, args);
+        }
+#endif
+      }) {
+#ifdef SQL_DB_TRACE
+      if (trace_enabled) {
+        report_debug("SQL_TRACE: Sql(%O)->big_query(%O%{, %O%}) failed:\n",
+                     db_name, f, args);
+      }
+#endif
+      handle_db_error (err);
+    }
+    if (reuse_in_thread) {
+      mapping(string:Sql.Sql) dbs_for_thread = sql_reuse_in_thread->get();
+      if (dbs_for_thread[db_name] == real)
+        m_delete (dbs_for_thread, db_name);
+    }
+#ifdef SQL_DB_TRACE
+    return [object(Sql.sql_result)] (object) SQLResKey (o, this, trace_enabled);
+#else
+    return [object(Sql.sql_result)] (object) SQLResKey (o, this);
+#endif
+  }
+
 #ifdef DB_DEBUG
   protected int num = sql_keynum++;
   protected string bt;
