@@ -2060,7 +2060,9 @@ protected class SQLKey
       case "db_name":   return db_name;
       case "reuse_in_thread": return reuse_in_thread;
       case "query":     return query;
+      case "typed_query":     return typed_query;
       case "big_query": return big_query;
+      case "big_typed_query": return big_typed_query;
     }
     return real[what];
   }
