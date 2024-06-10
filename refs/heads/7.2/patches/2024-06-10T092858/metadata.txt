@@ -1,0 +1,10 @@
+subject: Roxen 7.2: Improved diagnostics for [REPD-1024].
+from: d3e26e3bff0201a089c3cf389efa5f559b0d3e3e
+to: ff92ef33a514607a39f0f165a95651201bfec316
+originator: Erik Allemann
+depends: 2024-04-15T101254
+restart: true
+
+• SQLKey: Wrap big_typed_query() and typed_query().
+
+Improved diagnostics for [REPD-1024].
