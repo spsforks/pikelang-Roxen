@@ -252,7 +252,8 @@ class SocketLogger {
       // No port specified - assume UNIX socket
       int res = port->bind_unix(socket_path, accept_cb);
       if (!res) {
-        werror("Failed to bind socket path %O for configuration logger.\n", socket_path);
+        werror("Failed to bind socket path %O for configuration logger: %s.\n",
+               socket_path, strerror(port->errno()));
         return UNDEFINED;
       } else {
         ports_by_path[socket_path] = port;
