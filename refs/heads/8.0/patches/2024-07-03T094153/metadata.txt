@@ -1,0 +1,10 @@
+subject: Roxen 8.0: More debug wrapping of SQL queries
+from: d8db03d08257285cff163f9d645e2277f802df8b
+to: 630a95142fb5654ef4f0ce5b33952b9ba2382767
+originator: Jonas Wallden
+depends: 2024-06-10T091337
+restart: true
+
+• SQLKey: Fix wrapping of big_typed_query() and typed_query().
+
+Improved diagnostics for [REPD-1024] mk II.
