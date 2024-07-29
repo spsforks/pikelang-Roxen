@@ -1,0 +1,10 @@
+subject: Roxen 7.2: SQLKey: Fix wrapping of big_typed_query() and typed_query()
+from: ff92ef33a514607a39f0f165a95651201bfec316
+to: 25273efd1e979c6c5da4aced277a8c026e5f045e
+originator: Marcus Wellhardh
+depends: 2024-06-10T092858
+restart: true
+
+• SQLKey: Fix wrapping of big_typed_query() and typed_query().
+
+Improved diagnostics for [REPD-1024] mk II.
